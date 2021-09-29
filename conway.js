@@ -3,11 +3,10 @@ export const nextBoard = board => board.map((row, i) => row.map((cell, j) => {
   return cell && 2 <= aliveNeighbors <= 3 || !cell && aliveNeighbors == 3;
 }));
 
-const ds = [-1, 0, 1];
+const bounds = x => [Math.max(x - 1, 0), x + 2];
 const getAliveNeighbors = (board, i, j) => board
-  .slice(i - 1, i + 2) // get 3 rows centered at board(i)
-  .map(row => row.slice(i - 1, i + 2)) // get a 3x3 slice centered at board(i, j)
+  .slice(...bounds(i))
+  .map(row => row.slice(...bounds(j)))
   .flat()
-  .filter((_, idx) => idx != 4) // don't count board(i, j)
-  .filter(Boolean) // only count alive cells
-  .length;
+  .filter(Boolean)
+  .length - board[i][j];
