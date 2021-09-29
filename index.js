@@ -9,6 +9,10 @@ const bigCowSize = '0.025';
 const smolCowSize = '0.015';
 const bigCow = `${bigCowSize} `.repeat(3).trim();
 const smolCow = `${smolCowSize} `.repeat(3).trim();
+const bigCowAnimation = 'property: rotation; to: 0 360 0; loop: true; dur: 10000';
+const smolCowAnimation = '';
+const bigCowRotation = '0 0 0';
+const smolCowRotation = '0 45 0';
 const assetLinks = [
   { id: 'cow', src: './assets/cow.glb' }
 ];
@@ -19,7 +23,7 @@ const createPosition = (x, y) => `${x / 8} 1.2 ${-y / 8}`;
 const createCow = (x, y) => {
   const cow = document.createElement('a-gltf-model');
   cow.setAttribute('position', createPosition(x, y));
-  cow.setAttribute('rotation', '0 45 0');
+  cow.setAttribute('rotation', smolCowRotation);
   cow.setAttribute('color', '#4CC3D9');
   cow.setAttribute('scale', smolCow);
   cow.setAttribute('src', '#cow');
@@ -53,4 +57,6 @@ app.appendChild(scene);
 
 subBoard(board => board.forEach((row, i) => row.map((isFilled, j) => {
   cows[i][j].setAttribute('scale', isFilled ? bigCow : smolCow);
+  cows[i][j].setAttribute('animation', isFilled ? bigCowAnimation : smolCowAnimation);
+  cows[i][j].setAttribute('rotation', isFilled ? bigCowRotation : smolCowRotation);
 })));
