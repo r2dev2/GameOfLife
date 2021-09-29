@@ -28,4 +28,4 @@ const initialBoard = Array(rows()).fill(Array(cols()).fill(false)).map(x => [...
 export const [board, setBoard, subBoard] = useState(initialBoard);
 
 // Random board start
-// setBoard(board().map(row => row.map(() => Math.random() < .5)));
+setBoard(board().map(row => row.map(() => Math.random() < .15)));
