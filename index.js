@@ -3,13 +3,15 @@
 /**
  * Conways Game of Life but with cows in vr
  */
-import { board, subBoard } from './store.js';
+import { board, setBoard, subBoard } from './store.js';
+import { nextBoard } from './conway.js';
 
+const timeBetweenBoards = 1000;
 const bigCowSize = '0.025';
 const smolCowSize = '0.015';
 const bigCow = `${bigCowSize} `.repeat(3).trim();
 const smolCow = `${smolCowSize} `.repeat(3).trim();
-const bigCowAnimation = 'property: rotation; to: 0 360 0; loop: true; dur: 10000';
+const bigCowAnimation = 'property: rotation; to: 0 360 0; loop: true; dur: 5000';
 const smolCowAnimation = '';
 const bigCowRotation = '0 0 0';
 const smolCowRotation = '0 45 0';
@@ -60,3 +62,7 @@ subBoard(board => board.forEach((row, i) => row.map((isFilled, j) => {
   cows[i][j].setAttribute('animation', isFilled ? bigCowAnimation : smolCowAnimation);
   cows[i][j].setAttribute('rotation', isFilled ? bigCowRotation : smolCowRotation);
 })));
+
+setInterval(() => {
+  setBoard(nextBoard(board()));
+}, timeBetweenBoards);

@@ -1,3 +1,10 @@
+/**
+ * Use samepack to run these
+ *
+ * python3 -m pip install samepack
+ * same conway.test.js | node
+ */
+
 import { nextBoard } from './conway.js';
 const assert = require('assert');
 
