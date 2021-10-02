@@ -4,7 +4,7 @@ Conway's game of life but with 3d cows in WebVR.
 
 ## How
 
-1. Go to (https://r2dev2.github.io/gameoflife)
+1. Go to https://r2dev2.github.io/GameOfLife/
 2. `wasd` to move
 3. use mouse to drag perspective
 
